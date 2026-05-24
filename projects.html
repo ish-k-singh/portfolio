@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>All projects — Ishmeet Singh</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #f7f5f1;
+    --bg-2: #efece6;
+    --ink: #0d0d0c;
+    --ink-2: #6b6a66;
+    --ink-3: #a8a69f;
+    --card: #ffffff;
+    --line: #e7e3da;
+    --accent: #e8643a;
+    --shadow-1: 0 1px 0 rgba(20,18,15,.04), 0 8px 24px -12px rgba(40,30,15,.10), 0 24px 60px -28px rgba(40,30,15,.14);
+    --radius-lg: 26px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    background-image:
+      radial-gradient(1200px 600px at 90% -10%, color-mix(in oklch, var(--accent) 6%, transparent), transparent 60%),
+      radial-gradient(900px 500px at -10% 20%, rgba(20,18,15,.03), transparent 60%);
+  }
+  .mono{ font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+  .page{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 28px 40px 80px;
+  }
+
+  /* Top nav */
+  .nav{
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom: 56px;
+    position: relative;
+  }
+  .nav-links{
+    display:flex; align-items:center; gap: 4px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px;
+    box-shadow: var(--shadow-1);
+  }
+  .nav-link{
+    font-size: 14px; color: var(--ink-2); text-decoration:none;
+    padding: 8px 16px; border-radius: 999px;
+    transition: color .15s ease, background .15s ease;
+  }
+  .nav-link:hover{ color: var(--ink); background: var(--bg-2); }
+  .nav-link.active{ color: var(--ink); background: var(--bg-2); }
+  .back-link{
+    position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+    display:flex; align-items:center; gap: 8px;
+    text-decoration: none; color: var(--ink-2);
+    font-size: 14px;
+    padding: 8px 14px; border-radius: 999px;
+    background: var(--card); border: 1px solid var(--line);
+    box-shadow: var(--shadow-1);
+    transition: color .15s ease;
+  }
+  .back-link:hover{ color: var(--ink); }
+
+  /* Header */
+  .header{
+    margin-bottom: 56px;
+  }
+  .eyebrow{
+    font-size: 13px; color: var(--ink-2);
+    letter-spacing: .04em;
+    display: inline-block;
+    background: var(--card);
+    border: 1px solid var(--line);
+    padding: 6px 14px;
+    border-radius: 999px;
+    box-shadow: var(--shadow-1);
+    margin-bottom: 20px;
+  }
+  h1.title{
+    font-weight: 700;
+    font-size: clamp(40px, 5.6vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    margin: 0;
+    max-width: 920px;
+    text-wrap: balance;
+  }
+  .lede{
+    margin-top: 18px;
+    color: var(--ink-2);
+    font-size: 17px;
+    line-height: 1.5;
+    max-width: 640px;
+  }
+  .lede .accent{ color: var(--accent); font-weight: 600; }
+
+  /* Projects grid */
+  .grid{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 18px;
+  }
+  .project{
+    grid-column: span 6;
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    text-decoration: none;
+    color: var(--ink);
+    box-shadow: var(--shadow-1);
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    transition: transform .2s ease;
+  }
+  .project:hover{ transform: translateY(-2px); }
+  .project.tall{ grid-column: span 6; }
+  .project.wide{ grid-column: span 12; }
+  .project.third{ grid-column: span 4; }
+
+  .proj-thumb{
+    height: 220px; border-radius: 18px;
+    background: var(--bg-2);
+    border: 1px solid var(--line);
+    position: relative; overflow: hidden;
+    margin-bottom: 22px;
+    transition: transform .25s ease;
+  }
+  .project:hover .proj-thumb{ transform: scale(1.01); }
+
+  .proj-thumb.t1{
+    /* Oura ring */
+    background:
+      radial-gradient(circle at 50% 50%, transparent 24%, var(--ink) 25%, var(--ink) 38%, transparent 39%),
+      radial-gradient(circle at 50% 50%, transparent 0%, transparent 18%, color-mix(in oklch, var(--accent) 50%, white) 19%, color-mix(in oklch, var(--accent) 50%, white) 22%, transparent 23%),
+      repeating-linear-gradient(135deg, rgba(20,18,15,.04) 0 1px, transparent 1px 10px),
+      var(--bg-2);
+  }
+  .proj-thumb.t2{
+    /* Literacy / pages */
+    background:
+      linear-gradient(90deg, transparent 0 24%, var(--ink) 24% 26%, transparent 26% 38%, var(--ink-3) 38% 40%, transparent 40% 76%, var(--ink-3) 76% 78%, transparent 78%),
+      linear-gradient(180deg, transparent 30%, color-mix(in oklch, var(--accent) 30%, white) 30% 32%, transparent 32% 50%, color-mix(in oklch, var(--accent) 30%, white) 50% 52%, transparent 52% 70%, color-mix(in oklch, var(--accent) 30%, white) 70% 72%, transparent 72%),
+      var(--card);
+  }
+  .proj-thumb.t3{
+    background:
+      linear-gradient(90deg,
+        transparent 0 6%, var(--ink) 6% 16%,
+        transparent 16% 24%, var(--ink) 24% 34%,
+        transparent 34% 42%, var(--ink) 42% 52%,
+        transparent 52% 60%, var(--ink) 60% 70%,
+        transparent 70% 78%, var(--ink) 78% 88%,
+        transparent 88%),
+      linear-gradient(180deg, transparent 0 35%, color-mix(in oklch, var(--accent) 30%, white) 35%),
+      var(--card);
+  }
+  .proj-thumb.t4{
+    background:
+      radial-gradient(circle at 18% 28%, var(--accent) 4px, transparent 5px),
+      radial-gradient(circle at 72% 18%, var(--ink) 5px, transparent 6px),
+      radial-gradient(circle at 38% 68%, color-mix(in oklch, var(--accent) 60%, white) 6px, transparent 7px),
+      radial-gradient(circle at 86% 62%, var(--ink) 4px, transparent 5px),
+      radial-gradient(circle at 28% 85%, var(--accent) 5px, transparent 6px),
+      radial-gradient(circle at 62% 42%, var(--ink-3) 4px, transparent 5px),
+      radial-gradient(circle at 50% 78%, var(--ink) 3px, transparent 4px),
+      linear-gradient(135deg, color-mix(in oklch, var(--accent) 18%, white), var(--card));
+  }
+  .proj-thumb.t5{
+    background:
+      linear-gradient(180deg, transparent 50%, var(--ink) 50%),
+      repeating-linear-gradient(0deg, rgba(20,18,15,.05) 0 1px, transparent 1px 6px),
+      var(--accent);
+  }
+
+  .proj-arrow{
+    position:absolute; top: 22px; right: 22px;
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--card);
+    border: 1px solid var(--line);
+    display:grid; place-items:center;
+    z-index: 2;
+    transition: transform .2s ease, background .2s ease, color .2s ease;
+  }
+  .project:hover .proj-arrow{ background: var(--ink); color: var(--bg); transform: rotate(-45deg); }
+
+  .proj-tag{
+    display:inline-block;
+    align-self: flex-start;
+    font-size: 12px;
+    color: var(--ink-2);
+    background: var(--bg-2);
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    margin-bottom: 12px;
+    letter-spacing: .02em;
+  }
+  .proj-title{
+    font-size: 22px; font-weight: 600; letter-spacing: -0.015em;
+    line-height: 1.2;
+    margin: 0;
+  }
+  .proj-desc{
+    margin: 10px 0 0;
+    font-size: 14.5px;
+    color: var(--ink-2);
+    line-height: 1.5;
+    max-width: 52ch;
+  }
+  .proj-meta{
+    display:flex; align-items: center; gap: 8px;
+    font-size: 12px; color: var(--ink-3);
+    margin-top: 16px;
+  }
+  .proj-meta .sep{ width: 3px; height: 3px; border-radius: 50%; background: var(--ink-3); }
+
+  /* Footer */
+  .footer{
+    margin-top: 64px;
+    display:flex; align-items:center; justify-content:flex-end;
+    color: var(--ink-2); font-size: 13px;
+    gap: 18px;
+  }
+  .footer a{ color: var(--ink-2); text-decoration: none; }
+  .footer a:hover{ color: var(--ink); }
+
+  @media (max-width: 900px){
+    .project, .project.tall, .project.third{ grid-column: span 12; }
+    .back-link span{ display: none; }
+  }
+  @media (max-width: 720px){
+    .page{ padding: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header class="nav">
+    <nav class="nav-links">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link active" href="projects.html">Projects</a>
+      <a class="nav-link" href="mailto:ishmeet.singh@gmail.com">Contact</a>
+    </nav>
+  </header>
+
+  <section class="header">
+    <span class="eyebrow mono">PROJECTS · 05</span>
+    <h1 class="title">A selection of work I'm <span style="color: var(--accent)">proud</span> of.</h1>
+    <p class="lede">
+      A growing archive of case studies, research, and design work — spanning product strategy, UX research, and report design for clients like Oura and Innovate Public Schools.
+    </p>
+  </section>
+
+  <section class="grid">
+
+    <a class="project" href="oura-ux-research.html">
+      <div class="proj-thumb t1"></div>
+      <div class="proj-arrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="9 7 17 7 17 15"></polyline>
+        </svg>
+      </div>
+      <span class="proj-tag mono">CASE STUDY</span>
+      <h2 class="proj-title">UX Research for Oura as they file IPO</h2>
+      <p class="proj-desc">A research study examining how Oura's product surfaces meet the moment of going public — user expectations, narrative, and onboarding flow.</p>
+      <div class="proj-meta mono">
+        <span>2025</span><span class="sep"></span><span>UX Research</span><span class="sep"></span><span>Case study</span>
+      </div>
+    </a>
+
+    <a class="project" href="https://innovateschools.org/wp-content/uploads/2025/05/Literacy-is-Life-Policy-Brief.pdf" target="_blank" rel="noopener noreferrer">
+      <div class="proj-thumb t2"></div>
+      <div class="proj-arrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="9 7 17 7 17 15"></polyline>
+        </svg>
+      </div>
+      <span class="proj-tag mono">REPORT DESIGN</span>
+      <h2 class="proj-title">Literacy is Life — Policy Brief</h2>
+      <p class="proj-desc">Report design for Innovate Public Schools' policy brief making the case for early literacy investment. Layout, typography, and data visualization.</p>
+      <div class="proj-meta mono">
+        <span>2025</span><span class="sep"></span><span>Innovate Public Schools</span><span class="sep"></span><span>PDF</span>
+      </div>
+    </a>
+
+    <a class="project" href="https://innovateschools.org/wp-content/uploads/2026/03/LAUSD-Datasheet-2024-25-English-1.pdf" target="_blank" rel="noopener noreferrer">
+      <div class="proj-thumb t3"></div>
+      <div class="proj-arrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="9 7 17 7 17 15"></polyline>
+        </svg>
+      </div>
+      <span class="proj-tag mono">REPORT DESIGN</span>
+      <h2 class="proj-title">LAUSD Datasheet 2024–25</h2>
+      <p class="proj-desc">Annual datasheet design for Innovate Public Schools — translating LAUSD academic performance data into a clear, parent-friendly format.</p>
+      <div class="proj-meta mono">
+        <span>2026</span><span class="sep"></span><span>Innovate Public Schools</span><span class="sep"></span><span>PDF</span>
+      </div>
+    </a>
+
+    <a class="project" href="https://www.linkedin.com/in/ishmeet-singh/overlay/1778007671785/single-media-viewer/?profileId=ACoAACWz7zEBlmEm0XLnHYiWX3Pq6JLwxnxsi6I" target="_blank" rel="noopener noreferrer">
+      <div class="proj-thumb t4"></div>
+      <div class="proj-arrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="9 7 17 7 17 15"></polyline>
+        </svg>
+      </div>
+      <span class="proj-tag mono">CREATIVE BRIEF</span>
+      <h2 class="proj-title">Pista Events — Creative Brief</h2>
+      <p class="proj-desc">Brand and creative strategy brief for Pista Events, a community events brand I founded and scaled to 200+ attendees.</p>
+      <div class="proj-meta mono">
+        <span>2024</span><span class="sep"></span><span>Brand</span><span class="sep"></span><span>LinkedIn</span>
+      </div>
+    </a>
+
+    <a class="project" href="https://www.linkedin.com/in/ishmeet-singh/overlay/1635513143544/single-media-viewer/?profileId=ACoAACWz7zEBlmEm0XLnHYiWX3Pq6JLwxnxsi6I" target="_blank" rel="noopener noreferrer">
+      <div class="proj-thumb t5"></div>
+      <div class="proj-arrow">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="9 7 17 7 17 15"></polyline>
+        </svg>
+      </div>
+      <span class="proj-tag mono">PRODUCT CASE STUDY</span>
+      <h2 class="proj-title">Barstool — Product Case Study</h2>
+      <p class="proj-desc">A product strategy teardown of Barstool's digital surface — examining engagement loops, content monetization, and audience overlap.</p>
+      <div class="proj-meta mono">
+        <span>2024</span><span class="sep"></span><span>Product</span><span class="sep"></span><span>LinkedIn</span>
+      </div>
+    </a>
+
+  </section>
+
+  <footer class="footer">
+    <a href="https://www.linkedin.com/in/ishmeet-singh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="mailto:ishmeet.singh@gmail.com">Email</a>
+  </footer>
+</div>
+
+</body>
+</html>
