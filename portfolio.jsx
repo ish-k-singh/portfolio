@@ -114,7 +114,7 @@ function App(){
           <h1 className="headline">
             Hi, I'm{' '}
             <span className="portrait-chip" aria-hidden>
-              <image-slot id="headshot" shape="circle" placeholder="headshot"></image-slot>
+              <img src="headshot.webp" alt="" className="portrait-img" />
             </span>
             <span className="nbsp">{firstName}!</span>
             <br/>
